@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameObjectsManager : MonoBehaviour
 {
     public static GameObjectsManager Instance { private set; get; }
     private List<int> unLoadUids = new List<int>();
     private Dictionary<int, SceneGameObjectData> activeSceneGameObjectDatas = new Dictionary<int, SceneGameObjectData>();
+    public Transform gameObjectsManager;
     public enum SceneGameObjectsStatus
     {
         Loading,
@@ -22,7 +24,6 @@ public class GameObjectsManager : MonoBehaviour
 
         StartCoroutine(LoadGameObjects(gameObjectData));
     }
-
 
     private IEnumerator LoadGameObjects(GameObjectData gameObjectData)
     {
@@ -45,7 +46,10 @@ public class GameObjectsManager : MonoBehaviour
         sceneGameObjectData.gameObject = Instantiate(prefab);
         sceneGameObjectData.gameObject.transform.position = sceneGameObjectData.gameObjectData.position;
         sceneGameObjectData.gameObject.transform.rotation = sceneGameObjectData.gameObjectData.rotation;
+        sceneGameObjectData.gameObject.transform.parent = gameObjectsManager;
+        sceneGameObjectData.gameObject.layer = 6;
         sceneGameObjectData.gameObject.transform.localScale = sceneGameObjectData.gameObjectData.scale;
+
     }
 
     public void UnLoad(int uid)
@@ -58,7 +62,8 @@ public class GameObjectsManager : MonoBehaviour
         {
             if(activeSceneGameObjectDatas[unLoadUids[i]].status == SceneGameObjectsStatus.Loaded)
             {
-                Destroy(activeSceneGameObjectDatas[unLoadUids[i]].gameObject);
+                activeSceneGameObjectDatas[unLoadUids[i]].gameObject.layer = 7;
+                //Destroy(activeSceneGameObjectDatas[unLoadUids[i]].gameObject);
                 activeSceneGameObjectDatas.Remove(unLoadUids[i]);
                 unLoadUids.RemoveAt(i);
             }
@@ -77,6 +82,5 @@ public class GameObjectsManager : MonoBehaviour
             gameObject = null;
         }
     }
-
 
 }
