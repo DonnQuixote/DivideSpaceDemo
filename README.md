@@ -3,7 +3,6 @@ StudyDemo
 
 SimpleOctree
 You can set the number, position and size of the generated objects in the editor, and generate the visual part of the octree at the same time
-https://github.com/DonnQuixote/DivideSpaceDemo/assets/39556865/046f3240-3935-4c57-997c-2a4327eca80d
 
 
 PlaneDivideDemo
