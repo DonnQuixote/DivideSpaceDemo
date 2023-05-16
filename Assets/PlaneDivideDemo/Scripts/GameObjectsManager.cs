@@ -47,7 +47,7 @@ public class GameObjectsManager : MonoBehaviour
         sceneGameObjectData.gameObject.transform.position = sceneGameObjectData.gameObjectData.position;
         sceneGameObjectData.gameObject.transform.rotation = sceneGameObjectData.gameObjectData.rotation;
         sceneGameObjectData.gameObject.transform.parent = gameObjectsManager;
-        sceneGameObjectData.gameObject.layer = 6;
+        //sceneGameObjectData.gameObject.layer = 6;
         sceneGameObjectData.gameObject.transform.localScale = sceneGameObjectData.gameObjectData.scale;
 
     }
@@ -62,8 +62,8 @@ public class GameObjectsManager : MonoBehaviour
         {
             if(activeSceneGameObjectDatas[unLoadUids[i]].status == SceneGameObjectsStatus.Loaded)
             {
-                activeSceneGameObjectDatas[unLoadUids[i]].gameObject.layer = 7;
-                //Destroy(activeSceneGameObjectDatas[unLoadUids[i]].gameObject);
+                //activeSceneGameObjectDatas[unLoadUids[i]].gameObject.layer = 7;
+                Destroy(activeSceneGameObjectDatas[unLoadUids[i]].gameObject);
                 activeSceneGameObjectDatas.Remove(unLoadUids[i]);
                 unLoadUids.RemoveAt(i);
             }

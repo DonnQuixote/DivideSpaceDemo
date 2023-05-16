@@ -14,10 +14,10 @@ TagManager:
   - UI
   - Test
   - NotRender
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Obstacle
+  - Boid_Render
+  - Boid_UnRender
   - 
   - 
   - 
